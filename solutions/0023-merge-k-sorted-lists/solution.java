@@ -1,41 +1,46 @@
 import java.util.*;
 
 class Solution {
-    // Converts an array to linked list
-    public ListNode arrayToLinkedList(int[] arr) {
-        if (arr == null || arr.length == 0)
-            return null;
-
-        ListNode head = new ListNode(arr[0]);
-        ListNode current = head;
-
-        for (int i = 1; i < arr.length; i++) {
-            current.next = new ListNode(arr[i]);
-            current = current.next;
+    public ListNode mergeKLists(ListNode[] lists) {
+        Queue<ListNode> q = new LinkedList();
+        for(ListNode list: lists){
+            q.add(list);
         }
-
-        return head;
+        while(q.size() > 1){
+            ListNode l1 = q.poll();
+            ListNode l2 = q.poll();
+            q.add(mergeTwoList(l1, l2));
+        }
+        return q.peek();
     }
 
-    // Merges k sorted linked lists into one sorted list
-    public ListNode mergeKLists(ListNode[] lists) {
-        List<Integer> values = new ArrayList<>();
+    public ListNode mergeTwoList(ListNode l1, ListNode l2){
+        if(l1 == null) return l2;
+        if(l2 == null) return l1;
+        ListNode dummy = new ListNode(-1);
+        ListNode head1 = l1;
+        ListNode head2 = l2;
+        ListNode curr = dummy;
 
-        // Collect all values from the lists
-        for (int i = 0; i < lists.length; i++) {
-            ListNode temp = lists[i];
-            while (temp != null) {
-                values.add(temp.val);
-                temp = temp.next;
+        while(head1 != null && head2 != null) {
+            if(head1.val <= head2.val) {
+                curr.next = head1;
+                head1 = head1.next;
             }
+            else {
+                curr.next = head2;
+                head2= head2.next;
+            }
+            curr = curr.next;
         }
-
-        // Sort the values
-        Collections.sort(values);
-
-        // Convert back to linked list
-        int[] arr = values.stream().mapToInt(i -> i).toArray();
-        return arrayToLinkedList(arr);
+        if(head1 == null) {
+            curr.next = head2;
+        }
+        else {
+            curr.next = head1;
+        }
+        return dummy.next;
     }
 }
+
 
