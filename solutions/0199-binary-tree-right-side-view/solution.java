@@ -24,12 +24,12 @@ class Solution {
             for (int i = 0; i < size; i++) {
                 TreeNode curr = q.remove();
 
-                if (i == 0)
+                if (i == size-1)
                     list.add(curr.val);
-                if (curr.right != null)
-                    q.add(curr.right);
                 if (curr.left != null)
                     q.add(curr.left);
+                if (curr.right != null)
+                    q.add(curr.right);
             }
         }
         return list;
