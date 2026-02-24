@@ -32,7 +32,6 @@ class Solution {
 
         res = Math.max(res, total);
 
-        //returns The maximum path sum starting from that node going downward
         return root.val + Math.max(left, right);
     }
 }
