@@ -54,7 +54,7 @@ class Solution {
     }
 
     public Node helper(int[][] grid, int x, int y, int n) {
-        if (isSame(grid, x, y, n)) {
+        if(isSame(grid, x, y, n)) {
             return new Node(grid[x][y] == 1, true);
         } else {
             Node root = new Node(true, false);
