@@ -1,37 +1,35 @@
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> list = new ArrayList<>();
+        // 1. Initial check
+        if (nums == null || nums.length < 3) return new ArrayList<>();
 
+        // 2. Sort the array
         Arrays.sort(nums);
-        int n = nums.length;
+        Set<List<Integer>> result = new HashSet<>();
 
-        int p = 0;
-        for (int i = 0; i < n - 2; i++) {
-            int j = i + 1;
-            int k = n - 1;
-            while (j < k) {
-                int sum = nums[i] + nums[j] + nums[k];
+        // 3. Fix the first element
+        for (int i = 0; i < nums.length - 2; i++) {
+            
+            // 4. Two-pointer approach
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+
                 if (sum == 0) {
-                    List<Integer> list1 = new ArrayList<>();
-                    list1.add(nums[i]);
-                    list1.add(nums[j]);
-                    list1.add(nums[k]);
-                    list.add(list1);
-
-                    j++;
-                    k--;
-                    while(j < k && nums[j] == nums[j-1]) j++;
-                    while(j < k && nums[k] == nums[k+1]) k--;
-
-                } else if (sum > 0)
-                    k--;
-                else
-                    j++;
+                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+                    left++;
+                    right--;
+                } else if (sum < 0) {
+                    left++; // Need a bigger sum
+                } else {
+                    right--; // Need a smaller sum
+                }
             }
-            while(i < j && nums[i] == nums[i+1]) i++;
- 
         }
-
-        return list;
+        return new ArrayList<>(result);
     }
 }
+
+
