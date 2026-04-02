@@ -54,19 +54,4 @@ public class Trie {
         }
         return true;
     }
-
-    // Main method to test the Trie
-    public static void main(String[] args) {
-        Trie trie = new Trie();
-
-        trie.insert("apple");
-        trie.insert("app");
-        trie.insert("bat");
-        trie.insert("ball");
-
-        System.out.println("Search 'app': " + trie.search("app"));      // true
-        System.out.println("Search 'appl': " + trie.search("appl"));    // false
-        System.out.println("Prefix 'ba': " + trie.startsWith("ba"));    // true
-        System.out.println("Prefix 'cat': " + trie.startsWith("cat"));  // false
-    }
 }
