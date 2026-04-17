@@ -9,28 +9,27 @@ class Solution {
             if (nums[mid] == target) {
                 return true;
             }
-            if (nums[si] == nums[mid] && nums[ei] == nums[mid]) {
+            
+            if (nums[si] ==  nums[mid] && nums[ei] == nums[mid]) {
                 si++;
                 ei--;
                 continue;
             }
-            //left side is sorted
+            
+
             if (nums[si] <= nums[mid]) {
                 if (nums[si] <= target && target <= nums[mid]) {
                     ei = mid - 1;
                 } else {
                     si = mid + 1;
                 }
-            }
-            // Right side is sorted
-            else {
+            } else {
                 if (nums[mid] <= target && target <= nums[ei]) {
                     si = mid + 1;
                 } else {
                     ei = mid - 1;
                 }
             }
-
         }
         return false;
     }
