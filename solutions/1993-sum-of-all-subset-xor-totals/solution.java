@@ -1,15 +1,16 @@
 class Solution {
+    int ans = 0;
     public int subsetXORSum(int[] nums) {
-        int ans[] = new int[1];
-        helper(nums, 0, 0, ans);
-        return ans[0];
+        helper(nums, 0, 0);
+        return ans;
     }
-    void helper(int nums[], int index, int sum, int ans[]) {
-        if(index == nums.length) {
-            ans[0] += sum;
+
+    void helper(int nums[], int index, int sum) {
+        if (index == nums.length) {
+            ans += sum;
             return;
         }
-        helper(nums, index+1, sum^nums[index], ans);
-        helper(nums, index+1, sum, ans);
+        helper(nums, index + 1, sum ^ nums[index]);
+        helper(nums, index + 1, sum);
     }
 }
