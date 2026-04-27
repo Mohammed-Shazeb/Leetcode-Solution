@@ -32,12 +32,12 @@ class Solution {
                         sb.setCharAt(i, ch);
                         String neighbour = sb.toString();
 
-                        if (wordSet.contains(neighbour) && !visited.contains(neighbour)) {
+                        if(wordSet.contains(neighbour) && !visited.contains(neighbour)) {
                             visited.add(neighbour);
                             q.add(neighbour);
                         }
+                        sb.setCharAt(i, original);
                     }
-                    sb.setCharAt(i, original);
                 }
             }
             level++;
