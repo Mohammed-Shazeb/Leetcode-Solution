@@ -16,20 +16,21 @@ class Solution {
         while(!q.isEmpty()) {
             int n = q.size();
 
-            while(n-- > 0) {
+            while(n-- > 0 ) {
                 String curr = q.poll();
 
-                if (curr.equals(endGene)) return level;
+                if(curr.equals(endGene)) return level;
 
                 StringBuilder sb = new StringBuilder(curr);
 
                 for(int i=0; i<sb.length(); i++) {
                     char original = sb.charAt(i);
 
-                    for(char ch : "ACGT".toCharArray()) {
+                    for(char ch :"ACGT".toCharArray()) {
                         if(ch == original) continue;
 
                         sb.setCharAt(i, ch);
+                        
                         String neighbour = sb.toString();
 
                         if(bankSet.contains(neighbour) && !visited.contains(neighbour)) {
