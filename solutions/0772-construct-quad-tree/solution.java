@@ -40,21 +40,18 @@ class Node {
 
 class Solution {
     public boolean isSame(int[][] grid, int x, int y, int n) {
-        int val = grid[x][y];
-
         for (int i = x; i < x + n; i++) {
             for (int j = y; j < y + n; j++) {
-                if (grid[i][j] != val) {
+                if (grid[i][j] != grid[x][y]) {
                     return false;
                 }
             }
         }
-
         return true;
     }
 
     public Node helper(int[][] grid, int x, int y, int n) {
-        if(isSame(grid, x, y, n)) {
+        if (isSame(grid, x, y, n)) {
             return new Node(grid[x][y] == 1, true);
         } else {
             Node root = new Node(true, false);
