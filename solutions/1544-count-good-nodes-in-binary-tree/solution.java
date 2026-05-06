@@ -17,15 +17,12 @@ class Solution {
     private int count = 0;
 
     public int helper(TreeNode root, int max) {
-        if (root == null) {
-            return 0;
-        }
-        if (root.val >= max)
-            count++;
+        if(root == null) return 0;
 
-        int rootLeft = helper(root.left, Math.max(root.val, max));
-        int rootRight = helper(root.right, Math.max(root.val, max));
+        if(root.val >= max) count++;
 
+        int left = helper(root.left, Math.max(root.val, max));
+        int right = helper(root.right, Math.max(root.val, max));
         return count;
     }
 
