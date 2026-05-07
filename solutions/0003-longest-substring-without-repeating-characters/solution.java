@@ -12,7 +12,7 @@ class Solution {
                 left++;
             }
             set.add(c);
-            maxLen = Math.max(right - left + 1, maxLen);
+            maxLen = Math.max(maxLen, right - left + 1);
         }
 
         return maxLen;
