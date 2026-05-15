@@ -1,7 +1,4 @@
-import java.util.PriorityQueue;
-
 class Solution {
-
     static class Pair implements Comparable<Pair> {
         int v;
         int cost;
@@ -27,18 +24,22 @@ class Solution {
 
         while (!pq.isEmpty()) {
             Pair curr = pq.remove();
-            if (vis[curr.v]) continue;
+            
+            
+            if (!vis[curr.v]) {
 
-            vis[curr.v] = true;
-            totalCost += curr.cost;
+                vis[curr.v] = true;
+                totalCost += curr.cost;
 
-            for (int i = 0; i < n; i++) {
-                if (!vis[i]) {
-                    int dist = Math.abs(points[curr.v][0] - points[i][0]) +
-                               Math.abs(points[curr.v][1] - points[i][1]);
-                    pq.add(new Pair(i, dist));
+                for (int i = 0; i < n; i++) {
+                    if (!vis[i]) {
+                        int dist = Math.abs(points[curr.v][0] - points[i][0]) +
+                                Math.abs(points[curr.v][1] - points[i][1]);
+                        pq.add(new Pair(i, dist));
+                    }
                 }
             }
+
         }
 
         return totalCost;
