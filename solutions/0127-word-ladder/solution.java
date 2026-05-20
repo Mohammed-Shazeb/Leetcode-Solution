@@ -4,7 +4,7 @@ class Solution {
         Set<String> visited = new HashSet<>();
 
         for (String word : wordList) {
-            wordSet.add(word); 
+            wordSet.add(word);
         }
         Queue<String> q = new LinkedList<>();
         q.add(beginWord);
@@ -13,31 +13,32 @@ class Solution {
 
         int level = 1;
 
-        while(!q.isEmpty()) {
+        while (!q.isEmpty()) {
             int n = q.size();
 
-            while(n-- > 0) {
+            while (n-- > 0) {
                 String curr = q.poll();
 
-                if (curr.equals(endWord)) return level;
+                if (curr.equals(endWord))
+                    return level;
 
                 StringBuilder sb = new StringBuilder(curr);
 
                 for (int i = 0; i < sb.length(); i++) {
                     char original = sb.charAt(i);
 
-                    for (char ch = 'a'; ch<='z'; ch++) {
-                        if (ch == original) continue;
-
+                    for (char ch = 'a'; ch <= 'z'; ch++) {
+                        if (i == original) continue;
+                        
                         sb.setCharAt(i, ch);
-                        String neighbour = sb.toString();
+                        String nei = sb.toString();
 
-                        if(wordSet.contains(neighbour) && !visited.contains(neighbour)) {
-                            visited.add(neighbour);
-                            q.add(neighbour);
+                        if (wordSet.contains(nei) && !visited.contains(nei)) {
+                            visited.add(nei);
+                            q.add(nei);
                         }
-                        sb.setCharAt(i, original);
                     }
+                    sb.setCharAt(i, original);
                 }
             }
             level++;
