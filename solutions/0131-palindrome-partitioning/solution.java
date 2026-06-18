@@ -1,16 +1,15 @@
 class Solution {
     private void backtrack(String s, int index, List<List<String>> result, List<String> list) {
-        if (index == s.length()) {
+        if(index == s.length()) {
             result.add(new ArrayList<>(list));
-            return;
         }
 
-        for (int i = index; i < s.length(); i++) {
-            String sub = s.substring(index, i + 1);
+        for(int i=index; i<s.length(); i++) {
+            String substring = s.substring(index, i+1);
 
-            if (isPalindrome(sub)) {
-                list.add(sub);
-                backtrack(s, i + 1, result, list);
+            if(isPalindrome(substring)) {
+                list.add(substring);
+                backtrack(s, i+1, result, list);
                 list.remove(list.size() - 1);
             }
         }
