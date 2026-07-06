@@ -2,13 +2,6 @@ class Solution {
     static int dp[][] = new int[1001][1001];
     
     public int lcs(String x, String y, int n, int m, int dp[][]) {
-        for(int i=0; i<m; i++) {
-            dp[0][i] = 0;
-        }
-        for(int j=0; j<n; j++) {
-            dp[j][0] = 0;
-        }
-
         for(int i=1; i<n+1; i++) {
             for(int j=1; j<m+1; j++) {
                 if(x.charAt(i-1) == y.charAt(j-1)) {
