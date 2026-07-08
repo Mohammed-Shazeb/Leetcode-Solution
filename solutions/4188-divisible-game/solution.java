@@ -77,9 +77,6 @@ class Solution {
                 bestDiff = diff;
                 bestK = k;
             }
-            // else if (diff == bestDiff && k < bestK) {
-            //     bestK = k;
-            // }
         }
 
         long ans = (1L * bestDiff * bestK) % MOD;
