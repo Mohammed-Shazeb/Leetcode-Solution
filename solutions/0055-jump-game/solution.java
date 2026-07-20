@@ -1,23 +1,22 @@
 class Solution {
     public boolean canJump(int[] nums) {
-        int n = nums.length;
-
-        int dp[] = new int[n];
-        Arrays.fill(dp, -1);
-        dp[n - 1] = 0;
-
-        for (int i = n - 2; i >= 0; i--) {
-            int steps = nums[i];
-            int ans = Integer.MAX_VALUE;
-            for (int j = i + 1; j <= i + steps && j < n; j++) {
-                if (dp[j] != -1) {
-                    ans = Math.min(ans, dp[j] + 1);
+        int n = nums.length;        
+        boolean t[] = new boolean[n];
+        // Arrays.fill(t, -1);
+        //t[i] = True means, you can reach index i
+        
+        t[0] = true; //Already at starting index
+        
+        for(int i = 1; i<n; i++) {
+            for(int j = i-1; j>=0; j--) {
+                if(j + nums[j] >= i && t[j]) { //here t[j] == true means you should be able to reach j also, 
+                                               //then only you can plan to jump(j+nums[i])  from this jth index
+                    t[i] = true;
+                    break;
                 }
             }
-            if (ans != Integer.MAX_VALUE)
-                dp[i] = ans;
         }
 
-        return dp[0] != -1 ? true : false;
+        return t[n-1];
     }
 }
